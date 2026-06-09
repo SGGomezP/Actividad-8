@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class CoberturaAntenas {
+    public static void colocarAntenas(int[] casas, int R) {
+        Arrays.sort(casas); // Ordenar posiciones de casas 
+        List<Integer> antenas = new ArrayList<>();
+        int i = 0;
+        int n = casas.length;
+
+        while (i < n) {
+            // Casa más a la izquierda no cubierta 
+            int locIzquierda = casas[i];
+            
+            // Ubicación óptima de antena: cubrir locIzquierda en el extremo del rango 
+            int posAntena = locIzquierda + R;
+            antenas.add(posAntena);
+
+            // Saltar casas cubiertas por el rango [posAntena - R, posAntena + R] 
+            while (i < n && casas[i] <= posAntena + R) {
+                i++;
+            }
+        }
+
+        System.out.println("Posiciones de las antenas: " + antenas); // 
+        System.out.println("Cantidad total: " + antenas.size()); // 
+    }
+
+    public static void main(String[] args) {
+        // Ejemplo 1 del documento 
+        int[] casas = {1, 2, 7, 11, 20, 21, 30};
+        colocarAntenas(casas, 5);
+    }
+}
