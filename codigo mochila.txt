@@ -1,0 +1,51 @@
+import java.util.*;
+
+// Clase para representar los objetos de la mochila 
+class Objeto {
+    String nombre;
+    double valor, peso, ratio;
+
+    public Objeto(String nombre, double valor, double peso) {
+        this.nombre = nombre;
+        this.valor = valor;
+        this.peso = peso;
+        this.ratio = valor / peso; // Cálculo del ratio para la estrategia greedy 
+    }
+}
+
+public class MochilaFraccional {
+    public static void resolver(double capacidad, List<Objeto> objetos) {
+        // Ordenar objetos por ratio descendente 
+        objetos.sort((a, b) -> Double.compare(b.ratio, a.ratio));
+
+        double valorTotal = 0;
+        System.out.println("Objetos seleccionados:");
+
+        for (Objeto obj : objetos) {
+            if (capacidad <= 0) break;
+
+            if (obj.peso <= capacidad) {
+                // Se toma completo 
+                capacidad -= obj.peso;
+                valorTotal += obj.valor;
+                System.out.println("- " + obj.nombre + " completo");
+            } else {
+                // Se toma una fracción 
+                double fraccion = capacidad / obj.peso;
+                valorTotal += (obj.valor * fraccion);
+                System.out.printf("- %.2f/%.2f parte del objeto %s%n", capacidad, obj.peso, obj.nombre);
+                capacidad = 0;
+            }
+        }
+        System.out.println("Valor total obtenido: " + valorTotal); // 
+    }
+
+    public static void main(String[] args) {
+        // Ejemplo 1 del documento 
+        List<Objeto> items = new ArrayList<>();
+        items.add(new Objeto("A", 60, 10));
+        items.add(new Objeto("B", 100, 20));
+        items.add(new Objeto("C", 120, 30));
+        resolver(50, items);
+    }
+}
