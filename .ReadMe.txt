@@ -1,0 +1,21 @@
+Actividad 8: Algoritmos Voraces (Greedy)
+
+Este proyecto contiene los códigos en Java para resolver los problemas de:
+1. Mochila Fraccional
+2. Cobertura de Antenas
+
+CÓMO EJECUTAR:
+
+1. Cambia la extensión de los archivos de código de .txt a .java:
+   - codigo mochila.txt -> codigo mochila.java
+   - codigo cobertura de antenas.txt -> codigo cobertura de antenas.java
+
+3. Abre una terminal en esta carpeta y compila los archivos con:
+   javac codigo mochila.java
+   javac codigo cobertura de antenas.java
+
+4. Para ver los resultados, ejecuta:
+   java codigo mochila
+   java codigo cobertura de antenas
+
+*Nota: La complejidad de ambos algoritmos es O(n log n).*
